@@ -6,6 +6,7 @@ package grpc_author;
 
 service UserManager {
   rpc Create(UserReq) returns (UserRes);
+  rpc Login(UserReq) returns (UserRes);
 }
 
 message UserReq {

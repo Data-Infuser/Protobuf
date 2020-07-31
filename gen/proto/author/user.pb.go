@@ -169,14 +169,17 @@ var file_proto_author_user_proto_rawDesc = []byte{
 	0x65, 0x73, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x02,
 	0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28,
 	0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
-	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x32, 0x43, 0x0a, 0x0b,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x32, 0x78, 0x0a, 0x0b,
 	0x55, 0x73, 0x65, 0x72, 0x4d, 0x61, 0x6e, 0x61, 0x67, 0x65, 0x72, 0x12, 0x34, 0x0a, 0x06, 0x43,
 	0x72, 0x65, 0x61, 0x74, 0x65, 0x12, 0x14, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x75, 0x74,
 	0x68, 0x6f, 0x72, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x1a, 0x14, 0x2e, 0x67, 0x72,
 	0x70, 0x63, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65,
-	0x73, 0x42, 0x1a, 0x5a, 0x18, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f, 0x61, 0x75, 0x74, 0x68, 0x6f,
-	0x72, 0x3b, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x12, 0x33, 0x0a, 0x05, 0x4c, 0x6f, 0x67, 0x69, 0x6e, 0x12, 0x14, 0x2e, 0x67, 0x72, 0x70,
+	0x63, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x2e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71,
+	0x1a, 0x14, 0x2e, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x2e, 0x55,
+	0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x42, 0x1a, 0x5a, 0x18, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x2f,
+	0x61, 0x75, 0x74, 0x68, 0x6f, 0x72, 0x3b, 0x67, 0x72, 0x70, 0x63, 0x5f, 0x61, 0x75, 0x74, 0x68,
+	0x6f, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -198,9 +201,11 @@ var file_proto_author_user_proto_goTypes = []interface{}{
 }
 var file_proto_author_user_proto_depIdxs = []int32{
 	0, // 0: grpc_author.UserManager.Create:input_type -> grpc_author.UserReq
-	1, // 1: grpc_author.UserManager.Create:output_type -> grpc_author.UserRes
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	0, // 1: grpc_author.UserManager.Login:input_type -> grpc_author.UserReq
+	1, // 2: grpc_author.UserManager.Create:output_type -> grpc_author.UserRes
+	1, // 3: grpc_author.UserManager.Login:output_type -> grpc_author.UserRes
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -270,6 +275,7 @@ const _ = grpc.SupportPackageIsVersion6
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type UserManagerClient interface {
 	Create(ctx context.Context, in *UserReq, opts ...grpc.CallOption) (*UserRes, error)
+	Login(ctx context.Context, in *UserReq, opts ...grpc.CallOption) (*UserRes, error)
 }
 
 type userManagerClient struct {
@@ -289,9 +295,19 @@ func (c *userManagerClient) Create(ctx context.Context, in *UserReq, opts ...grp
 	return out, nil
 }
 
+func (c *userManagerClient) Login(ctx context.Context, in *UserReq, opts ...grpc.CallOption) (*UserRes, error) {
+	out := new(UserRes)
+	err := c.cc.Invoke(ctx, "/grpc_author.UserManager/Login", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserManagerServer is the server API for UserManager service.
 type UserManagerServer interface {
 	Create(context.Context, *UserReq) (*UserRes, error)
+	Login(context.Context, *UserReq) (*UserRes, error)
 }
 
 // UnimplementedUserManagerServer can be embedded to have forward compatible implementations.
@@ -300,6 +316,9 @@ type UnimplementedUserManagerServer struct {
 
 func (*UnimplementedUserManagerServer) Create(context.Context, *UserReq) (*UserRes, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
+}
+func (*UnimplementedUserManagerServer) Login(context.Context, *UserReq) (*UserRes, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
 
 func RegisterUserManagerServer(s *grpc.Server, srv UserManagerServer) {
@@ -324,6 +343,24 @@ func _UserManager_Create_Handler(srv interface{}, ctx context.Context, dec func(
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserManager_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserReq)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserManagerServer).Login(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/grpc_author.UserManager/Login",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserManagerServer).Login(ctx, req.(*UserReq))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _UserManager_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "grpc_author.UserManager",
 	HandlerType: (*UserManagerServer)(nil),
@@ -331,6 +368,10 @@ var _UserManager_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Create",
 			Handler:    _UserManager_Create_Handler,
+		},
+		{
+			MethodName: "Login",
+			Handler:    _UserManager_Login_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
