@@ -1,0 +1,15 @@
+{
+  "name": "infuser-protobuf",
+  "version": "1.0.0",
+  "description": "Infuser 서비스간 연계를 위한 IDL 관리 Repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "grpc-tools": "^1.9.1",
+    "grpc_tools_node_protoc_ts": "^4.1.0"
+  }
+}
