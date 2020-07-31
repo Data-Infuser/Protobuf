@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "gitlab.com/promptech1/infuser-designer/designer;designer";
+option go_package = "proto/designer;grpc_designer";
 
 package designer;
 
