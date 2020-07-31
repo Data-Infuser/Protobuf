@@ -1,4 +1,4 @@
-module gitlab.com/promptech1/infuser-protobuf
+module .
 
 go 1.14
 

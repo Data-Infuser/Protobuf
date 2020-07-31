@@ -19,8 +19,6 @@ author-proto:
 designer-proto:
 	protoc -I. -I${GOPATH}/src -I$(GOOGLEAPIS_DIR) --go_out=$(PKGMAP) ${DESIGNER_PROTO_SRC}
 
-gen-dir: clean
-	mkdir gen
-
 clean:
 	rm -rf gen
+	mkdir gen
