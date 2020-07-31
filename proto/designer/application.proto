@@ -2,34 +2,32 @@ syntax = "proto3";
 
 option go_package = "proto/designer;grpc_designer";
 
-package grpc_designer;
+package designer;
 
 service ApplicationService {
-  rpc ListApplication (ListApplicationRequest) returns (ApplicationList) {}
+    rpc ListApplication (ListApplicationRequest) returns (ApplicationList) {}
 }
-
-message Empty {}
 
 message Application {
   int32 id = 1;
-  string nameSpace = 2;
+  string name_space = 2;
   string title = 3;
   string description = 4;
   string status = 5;
-  int32 userId = 6;
-  string createdAt = 7;
-  string updatedAt = 8;
+  int32 user_id = 6;
+  string created_at = 7;
+  string updated_at = 8;
 }
 
 message ApplicationList {
-  int32 totalCount = 1;
+  int32 total_count = 1;
   int32 page = 2;
-  int32 perPage = 3;
-  repeated Application Applications = 4;
+  int32 per_page = 3;
+  repeated Application applications = 4;
 }
 
 message ListApplicationRequest {
-  int32 perPage = 1;
+  int32 per_page = 1;
   int32 page = 2;
-  string nameSpace = 3;
+  string name_space = 3;
 }
