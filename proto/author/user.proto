@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option go_package = "proto/author;grpc_author";
+
+package grpc_author;
+
+service UserManager {
+  rpc Create(UserReq) returns (UserRes);
+}
+
+message UserReq {
+  string email = 1;
+  string password = 2;
+  string name = 3;
+}
+
+message UserRes {
+  uint32 id = 1;
+  string email = 2;
+  string name = 3;
+
+}
