@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = "proto/author;grpc_author";
+
+package grpc_author;
+
+service ApiAuthService {
+  rpc Auth(ApiAuthReq) returns (ApiAuthRes);
+}
+
+message ApiAuthReq {
+  string name_space = 1;
+  string token = 2;
+}
+
+message ApiAuthRes {
+  enum Code {
+    VALID = 0;
+    INTERNAL_EXCEPTION = 1;
+    PARAMETER_EXCEPTION = 2;
+    UNREGISTERED_SERVICE = 3;
+    TERMINATED_SERVICE = 4;
+    LIMIT_EXCEEDED = 5;
+    UNAUTHORIZED = 6;
+    UNKNOWN = 99;
+  }
+  Code code = 1;
+}
