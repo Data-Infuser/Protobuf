@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option go_package = "proto/author;grpc_author";
+
+package grpc_author;
+
+service AppManager {
+  rpc Create(AppReq) returns (AppRes);
+  rpc Update(AppReq) returns (AppRes);
+  rpc Destroy(AppReq) returns (AppRes);
+}
+
+message AppReq {
+  uint32 app_id = 2;
+  string name_space = 1;
+
+  message AppTraffic {
+    string unit = 1;
+    uint32 value = 2;
+  }
+  repeated AppTraffic traffics = 3;
+
+  message Operation {
+    string end_point = 1;
+    uint32 operation_id = 2;
+  }
+  repeated Operation operations = 4;
+}
+
+message AppRes {
+  enum Status {
+    OK = 0;
+    ERROR = 1;
+  }
+}
