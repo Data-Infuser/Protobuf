@@ -33,4 +33,6 @@ message AppRes {
     OK = 0;
     ERROR = 1;
   }
+
+  Status status = 1;
 }
