@@ -10,7 +10,8 @@ service ApiAuthService {
 
 message ApiAuthReq {
   string name_space = 1;
-  string token = 2;
+  string operation_url = 2;
+  string token = 3;
 }
 
 message ApiAuthRes {
