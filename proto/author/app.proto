@@ -17,6 +17,7 @@ message AppReq {
   message AppTraffic {
     string unit = 1;
     uint32 value = 2;
+    uint32 seq = 3;
   }
   repeated AppTraffic traffics = 3;
 
