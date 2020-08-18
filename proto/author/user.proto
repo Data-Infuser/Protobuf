@@ -4,20 +4,29 @@ option go_package = "proto/author;grpc_author";
 
 package grpc_author;
 
-service UserManager {
-  rpc Create(UserReq) returns (UserRes);
-  rpc Login(UserReq) returns (UserRes);
+service UserService {
+  rpc Signup(UserReq) returns (UserRes);
 }
 
 message UserReq {
-  string email = 1;
+  string login_id = 1;
   string password = 2;
-  string name = 3;
+  string password_confirmation = 3;
+  string email = 4;
+  string name = 5;
 }
 
 message UserRes {
   uint32 id = 1;
-  string email = 2;
-  string name = 3;
-
+  string login_id = 2;
+  string email = 3;
+  string name = 4;
+  enum Code {
+    VALID = 0;
+    DUPLICATE_LOGIN_ID = -1;
+    PASSWORD_NOT_MATCHED = -2;
+    DUPLICATE_EMAIL = -3;
+    INTERNAL_EXCEPTION = -99;
+  }
+  Code code = 5;
 }
