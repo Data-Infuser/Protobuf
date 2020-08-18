@@ -10,14 +10,18 @@ PKGMAP=plugins=grpc:gen
 
 AUTHOR_PROTO_SRC=proto/author/*.proto
 DESIGNER_PROTO_SRC=proto/designer/*.proto
+EXECUTOR_PROTO_SRC=proto/executor/*.proto
 
-all-proto: author-proto designer-proto
+all-proto: author-proto designer-proto executor-proto
 
 author-proto:
 	protoc -I. -I${GOPATH}/src -I$(GOOGLEAPIS_DIR) --go_out=$(PKGMAP) ${AUTHOR_PROTO_SRC}
 
 designer-proto:
 	protoc -I. -I${GOPATH}/src -I$(GOOGLEAPIS_DIR) --go_out=$(PKGMAP) ${DESIGNER_PROTO_SRC}
+
+executor-proto:
+	protoc -I. -I${GOPATH}/src -I$(GOOGLEAPIS_DIR) --go_out=$(PKGMAP) ${EXECUTOR_PROTO_SRC}
 
 clean:
 	rm -rf gen

@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option go_package = "proto/executor;grpc_executor";
+
+package grpc_executor;
+import "google/protobuf/any.proto";
+
+
+service ApiResultService {
+  rpc getApiResult (ApiRequest) returns (ApiResult) {}
+}
+
+
+message condition {
+  string col = 1;
+  google.protobuf.Any val = 2;
+}
+
+message ApiResult {
+  int32 page = 1;
+  int32 perPage = 2;
+  int32 currentCount = 3;
+  int32 matchCount = 4;
+  int32 totalCount = 5;
+  map<string, google.protobuf.Any> data = 6;
+}
+
+message ApiRequest {
+  int32 applicationId = 1;
+  int32 apiId = 2;
+  int32 page = 3;
+  int32 perPage = 4;
+  map<string, condition> cond = 5;
+}
