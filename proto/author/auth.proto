@@ -4,8 +4,11 @@ option go_package = "proto/author;grpc_author";
 
 package grpc_author;
 
+import "google/protobuf/timestamp.proto";
+
 service AuthService {
   rpc Login(LoginReq) returns (AuthRes);
+  rpc Auth(JwtReq) returns (AuthRes);
   rpc Refresh(RefreshTokenReq) returns (AuthRes);
 }
 
@@ -14,15 +17,19 @@ message LoginReq {
   string password = 2;
 }
 
+message JwtReq {
+  string jwt = 1;
+}
+
 message RefreshTokenReq {
   string refresh_token = 1;
 }
 
 message AuthRes {
   string jwt = 1;
-  uint32 expires_in = 2;
+  google.protobuf.Timestamp expires_in = 2;
   string refresh_token = 3;
-  uint32 refresh_token_expires_in = 4;
+  google.protobuf.Timestamp refresh_token_expires_in = 4;
   AuthResult code = 5;
   string msg = 6;
 }
@@ -33,4 +40,5 @@ enum AuthResult {
   INVALID_PASSWORD = -2;
   WITHDRAWAL_USER = -3;
   INVALID_TOKEN = -4;
+  INTERNAL_EXCEPTION = -9;
 }
