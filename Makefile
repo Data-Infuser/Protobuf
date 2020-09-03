@@ -21,7 +21,7 @@ designer-proto:
 	protoc -I. -I${GOPATH}/src -I$(GOOGLEAPIS_DIR) --go_out=$(PKGMAP) ${DESIGNER_PROTO_SRC}
 
 executor-proto:
-	protoc -I. -I${GOPATH}/src -I$(GOOGLEAPIS_DIR) --go_out=$(PKGMAP) ${EXECUTOR_PROTO_SRC}
+	protoc -I. -I${GOPATH}/src -I$(GOOGLEAPIS_DIR) --go_out=$(PKGMAP) --experimental_allow_proto3_optional ${EXECUTOR_PROTO_SRC}
 
 clean:
 	rm -rf gen
