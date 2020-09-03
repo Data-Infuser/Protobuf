@@ -11,9 +11,20 @@ service ApiResultService {
 }
 
 
+
 message condition {
   string col = 1;
-  google.protobuf.Any val = 2;
+  enum Op {
+    LT = 0;
+    LTE = 1;
+    GT = 2;
+    GTE = 3;
+    LIKE = 4;
+    EQ = 5;
+    NEQ = 6;
+  }
+  Op op = 2;
+  google.protobuf.Any val = 3;
 }
 
 message ApiResult {
