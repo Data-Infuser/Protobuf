@@ -3,7 +3,6 @@ syntax = "proto3";
 option go_package = "proto/executor;grpc_executor";
 
 package executor;
-import "google/protobuf/any.proto";
 
 
 service ApiResultService {
@@ -11,29 +10,13 @@ service ApiResultService {
 }
 
 
-
-message condition {
-  string col = 1;
-  enum Op {
-    LT = 0;
-    LTE = 1;
-    GT = 2;
-    GTE = 3;
-    LIKE = 4;
-    EQ = 5;
-    NEQ = 6;
-  }
-  Op op = 2;
-  google.protobuf.Any val = 3;
-}
-
 message ApiResult {
   int32 page = 1;
   int32 perPage = 2;
   int32 currentCount = 3;
   int32 matchCount = 4;
   int32 totalCount = 5;
-  map<string, google.protobuf.Any> data = 6;
+  repeated string data = 6;
 }
 
 message ApiRequest {
@@ -41,5 +24,5 @@ message ApiRequest {
   string api = 2;
   optional int32 page = 3;
   optional int32 perPage = 4;
-  map<string, condition> cond = 5;
+  map<string, string> cond = 5;
 }
