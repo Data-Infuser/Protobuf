@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "proto/executor;grpc_executor";
 
-package grpc_executor;
+package executor;
 import "google/protobuf/any.proto";
 
 
@@ -26,9 +26,9 @@ message ApiResult {
 }
 
 message ApiRequest {
-  int32 applicationId = 1;
-  int32 apiId = 2;
-  int32 page = 3;
-  int32 perPage = 4;
+  string application = 1;
+  string api = 2;
+  optional int32 page = 3;
+  optional int32 perPage = 4;
   map<string, condition> cond = 5;
 }
